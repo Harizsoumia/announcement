@@ -1,403 +1,296 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>إعلان رحلة - مولتي</title>
-<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Tajawal:wght@400;700;900&display=swap" rel="stylesheet">
-<style>
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  body {
-    background: #e8e2d6;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    min-height: 100vh;
-    font-family: 'Tajawal', sans-serif;
-    padding: 30px 10px;
-  }
-  .paper {
-    width: 680px;
-    background: #fffdf7;
-    border-radius: 6px;
-    box-shadow: 0 10px 50px rgba(0,0,0,0.2), 0 2px 8px rgba(0,0,0,0.1);
-    position: relative;
-    overflow: hidden;
-    padding-bottom: 50px;
-    border: 1px solid #e8dfc8;
-  }
-  .sky {
-    width: 100%;
-    height: 190px;
-    background: linear-gradient(180deg, #0d1f4a 0%, #1a3a6b 25%, #2255a4 55%, #4a8fd4 80%, #87c1f0 100%);
-    position: relative;
-    overflow: hidden;
-  }
-  .star-dot { position: absolute; background: white; border-radius: 50%; }
-  .sky-leaf { position: absolute; border-radius: 50% 0 50% 0; opacity: 0.88; }
-  .minaret-wrap { position: absolute; left: 22px; bottom: -18px; z-index: 10; }
-  .minaret-svg { filter: drop-shadow(0 0 8px #ffe066bb) drop-shadow(0 0 20px #ffd70077); }
-  .title-area { text-align: center; padding: 26px 40px 8px; }
-  .bismillah { font-family: 'Amiri', serif; font-size: 18px; color: #7a5c1e; margin-bottom: 6px; opacity: 0.8; }
-  .moulti-banner { display: inline-block; position: relative; margin-bottom: 2px; }
-  .moulti-text {
-    font-family: 'Amiri', serif; font-size: 68px; font-weight: 700;
-    background: linear-gradient(135deg, #a06800, #d4a017, #f5c842, #d4a017, #a06800);
-    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-    line-height: 1; letter-spacing: 5px;
-  }
-  .ya-leaves { position: absolute; bottom: 2px; left: 50%; transform: translateX(-50%); display: flex; gap: 3px; }
-  .ya-leaf { width: 9px; height: 12px; border-radius: 50% 0 50% 0; }
-  .ramadan-deco { display: flex; justify-content: center; margin: 4px 0 2px; }
-  .subtitle { font-size: 13px; color: #999; letter-spacing: 1px; margin-top: 4px; }
-  .divider {
-    width: 78%; margin: 12px auto; height: 2px;
-    background: linear-gradient(90deg, transparent, #c9a84c, #e8c05a, #c9a84c, transparent); border-radius: 2px;
-  }
-  .divider-thin {
-    width: 55%; margin: 8px auto; height: 1px;
-    background: linear-gradient(90deg, transparent, #c9a84c55, transparent);
-  }
-  .content { padding: 0 46px; }
-  .announce-label { text-align: center; font-size: 12px; color: #aaa; letter-spacing: 3px; margin-bottom: 4px; }
-  .main-title { text-align: center; font-family: 'Amiri', serif; font-size: 30px; color: #1a3a6b; font-weight: 700; margin-bottom: 6px; }
-  .intro-text { text-align: center; font-size: 14.5px; color: #444; line-height: 1.9; margin-bottom: 10px; }
-  .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 9px; margin: 12px 0; }
-  .info-card {
-    background: linear-gradient(135deg, #f7f2e8, #fdf9ef); border: 1px solid #ddd0a8;
-    border-radius: 10px; padding: 11px 14px; display: flex; align-items: flex-start; gap: 9px;
-  }
-  .info-card.full { grid-column: 1 / -1; }
-  .card-icon { font-size: 20px; line-height: 1; flex-shrink: 0; }
-  .card-label { font-size: 10px; color: #b8860b; font-weight: 700; letter-spacing: 1px; display: block; margin-bottom: 1px; }
-  .card-value { font-size: 14px; color: #111; font-weight: 600; line-height: 1.45; }
-  .invited-box {
-    background: linear-gradient(135deg, #1a3a6b08, #2255a412); border: 1.5px solid #2255a430;
-    border-radius: 12px; padding: 14px 18px; margin: 12px 0; text-align: center;
-  }
-  .invited-title { font-family: 'Amiri', serif; font-size: 17px; color: #1a3a6b; font-weight: 700; margin-bottom: 5px; }
-  .invited-text { font-size: 13.5px; color: #333; line-height: 1.8; }
-  .note { font-size: 12.5px; color: #777; text-align: center; margin-top: 6px; font-style: italic; }
-  .ramadan-note {
-    background: linear-gradient(135deg, #fff8e6, #fffbf0); border: 1.5px solid #e8c05a55;
-    border-radius: 10px; padding: 10px 18px; margin: 10px 0 0; text-align: center;
-    font-size: 13.5px; color: #7a5c1e; font-style: italic;
-  }
-  .register-wrap { text-align: center; margin: 20px 0 8px; }
-  .register-btn {
-    background: linear-gradient(135deg, #1a3a6b, #2255a4); color: #ffe066; border: none;
-    border-radius: 30px; padding: 13px 40px; font-family: 'Tajawal', sans-serif; font-size: 16px;
-    font-weight: 700; cursor: pointer; letter-spacing: 1px; box-shadow: 0 4px 18px #1a3a6b44;
-    transition: transform 0.15s, box-shadow 0.15s; display: inline-flex; align-items: center; gap: 8px;
-  }
-  .register-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 28px #1a3a6b55; }
-  .footer-note { text-align: center; margin-top: 18px; padding: 0 40px; }
-  .attendance-line { font-size: 12px; color: #aaa; letter-spacing: 1px; margin-bottom: 3px; }
-  .attendance-bold { font-size: 13.5px; color: #c9a84c; font-weight: 700; letter-spacing: 1px; }
-  .signature-area { margin-top: 16px; text-align: center; }
-  .sig-line { width: 180px; height: 1px; background: linear-gradient(90deg, transparent, #c9a84c, transparent); margin: 0 auto 7px; }
-  .sig-text {
-    font-family: 'Amiri', serif; font-size: 24px;
-    background: linear-gradient(90deg, #1a3a6b, #d4a017, #c0392b, #1a3a6b, #d4a017);
-    background-size: 200%; -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-    background-clip: text; animation: shimmer 3s linear infinite; font-weight: 700;
-  }
-  @keyframes shimmer { 0% { background-position: 0% } 100% { background-position: 200% } }
-  .source-line { font-size: 10.5px; color: #ccc; margin-top: 3px; letter-spacing: 1px; }
-  .ornament { position: absolute; font-size: 26px; color: #c9a84c; opacity: 0.3; line-height: 1; pointer-events: none; }
-  .ornament.tl { top: 197px; right: 12px; }
-  .ornament.tr { top: 197px; left: 12px; transform: scaleX(-1); }
-  .ornament.bl { bottom: 44px; right: 12px; transform: scaleY(-1); }
-  .ornament.br { bottom: 44px; left: 12px; transform: scale(-1,-1); }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>إعلان رحلة – مولتي</title>
 
-  /* Registered list */
-  .registered-section { margin: 14px 0 0; display: none; }
-  .registered-section.has-entries { display: block; }
-  .registered-title { text-align: center; font-family: 'Amiri', serif; font-size: 17px; color: #1a3a6b; font-weight: 700; margin-bottom: 10px; }
-  .registered-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 6px; }
-  .reg-entry {
-    background: linear-gradient(135deg, #f0f5ff, #e8efff); border: 1px solid #c0d0f0;
-    border-radius: 8px; padding: 7px 12px; display: flex; align-items: center; gap: 8px; font-size: 13px;
-  }
-  .reg-num {
-    width: 22px; height: 22px; background: #1a3a6b; color: #ffe066; border-radius: 50%;
-    display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; flex-shrink: 0;
-  }
-  .reg-name { color: #111; font-weight: 600; flex: 1; }
-  .reg-day { font-size: 11px; color: #2255a4; font-weight: 700; background: #dce8ff; border-radius: 10px; padding: 1px 7px; }
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Tajawal:wght@400;700;900&display=swap" rel="stylesheet" />
 
-  /* Modal */
-  .modal-overlay {
-    display: none; position: fixed; inset: 0; background: rgba(10,20,50,0.72); z-index: 1000;
-    justify-content: center; align-items: center; backdrop-filter: blur(4px);
-  }
-  .modal-overlay.open { display: flex; }
-  .modal-box {
-    background: #fffdf7; border-radius: 18px; width: 420px; max-width: 95vw;
-    box-shadow: 0 24px 70px rgba(0,0,0,0.38); overflow: hidden;
-    animation: popIn 0.3s cubic-bezier(0.175,0.885,0.32,1.275);
-    position: relative;
-  }
-  @keyframes popIn {
-    from { transform: scale(0.65) translateY(40px); opacity: 0; }
-    to { transform: scale(1) translateY(0); opacity: 1; }
-  }
-  .modal-header {
-    background: linear-gradient(135deg, #0d1f4a, #2255a4); padding: 22px 24px 16px;
-    text-align: center; position: relative;
-  }
-  .modal-header h2 { font-family: 'Amiri', serif; color: #ffe066; font-size: 27px; font-weight: 700; margin-bottom: 3px; }
-  .modal-header p { color: #a0c0ff; font-size: 13px; }
-  .modal-close {
-    position: absolute; top: 10px; left: 14px; background: none; border: none;
-    color: #ffffff99; font-size: 22px; cursor: pointer; line-height: 1; padding: 4px; transition: color 0.15s;
-  }
-  .modal-close:hover { color: #fff; }
-  .modal-body { padding: 24px 28px; }
-  .form-group { margin-bottom: 18px; }
-  .form-label { display: block; font-size: 13px; font-weight: 700; color: #555; margin-bottom: 7px; letter-spacing: 0.5px; }
-  .form-input {
-    width: 100%; padding: 11px 15px; border: 1.5px solid #ddd0a8; border-radius: 10px;
-    font-family: 'Tajawal', sans-serif; font-size: 15px; background: #fdf9ef; color: #111;
-    outline: none; transition: border-color 0.2s, box-shadow 0.2s; text-align: right;
-  }
-  .form-input:focus { border-color: #2255a4; box-shadow: 0 0 0 3px #2255a422; }
-  .day-selector { display: flex; gap: 8px; flex-wrap: wrap; }
-  .day-option input { display: none; }
-  .day-option label {
-    display: block; padding: 9px 20px; border: 1.5px solid #ddd0a8; border-radius: 24px;
-    font-size: 14px; font-weight: 600; color: #666; cursor: pointer; background: #fdf9ef;
-    transition: all 0.18s; user-select: none;
-  }
-  .day-option input:checked + label {
-    background: linear-gradient(135deg, #1a3a6b, #2255a4); color: #ffe066;
-    border-color: #2255a4; box-shadow: 0 3px 12px #2255a433;
-  }
-  .day-option label:hover { border-color: #2255a4; color: #1a3a6b; }
-  .submit-btn {
-    width: 100%; padding: 13px; background: linear-gradient(135deg, #c9a84c, #e8c05a);
-    border: none; border-radius: 12px; font-family: 'Tajawal', sans-serif; font-size: 16px;
-    font-weight: 700; color: #1a1a1a; cursor: pointer; transition: transform 0.15s, box-shadow 0.15s;
-    box-shadow: 0 4px 15px #c9a84c44; margin-top: 6px;
-  }
-  .submit-btn:hover { transform: translateY(-2px); box-shadow: 0 7px 22px #c9a84c55; }
-  .success-msg { display: none; text-align: center; padding: 30px 22px 36px; }
-  .success-msg .check-icon { font-size: 54px; margin-bottom: 12px; }
-  .success-msg h3 { font-family: 'Amiri', serif; font-size: 25px; color: #1a3a6b; margin-bottom: 8px; }
-  .success-msg p { font-size: 14px; color: #555; line-height: 1.7; }
-</style>
+  <link rel="stylesheet" href="announcement.css" />
 </head>
 <body>
-
-<div class="paper">
-
-  <div class="sky" id="sky"></div>
-
-  <div class="minaret-wrap">
-    <svg class="minaret-svg" width="66" height="165" viewBox="0 0 66 165" fill="none">
-      <rect x="13" y="114" width="40" height="51" rx="2" fill="#e8c862" opacity="0.92"/>
-      <path d="M25 165 L25 138 Q33 129 41 138 L41 165Z" fill="#b8860b" opacity="0.55"/>
-      <rect x="18" y="121" width="11" height="11" rx="2" fill="#1a3a6b" opacity="0.45"/>
-      <rect x="36" y="121" width="11" height="11" rx="2" fill="#1a3a6b" opacity="0.45"/>
-      <rect x="18" y="80" width="30" height="36" rx="2" fill="#f0c840" opacity="0.92"/>
-      <rect x="23" y="88" width="8" height="11" rx="1" fill="#1a3a6b" opacity="0.38"/>
-      <rect x="35" y="88" width="8" height="11" rx="1" fill="#1a3a6b" opacity="0.38"/>
-      <rect x="15" y="111" width="36" height="5" rx="1.5" fill="#c9a84c"/>
-      <rect x="20" y="77" width="26" height="5" rx="1.5" fill="#c9a84c"/>
-      <rect x="23" y="53" width="20" height="27" rx="2" fill="#e8c862" opacity="0.95"/>
-      <rect x="27" y="59" width="12" height="13" rx="5" fill="#1a3a6b" opacity="0.3"/>
-      <rect x="21" y="51" width="24" height="4" rx="1.5" fill="#c9a84c"/>
-      <ellipse cx="33" cy="47" rx="14" ry="7" fill="#f5d060"/>
-      <path d="M19 47 Q33 33 47 47" fill="#f5d060"/>
-      <circle cx="33" cy="29" r="7" fill="#ffe066" opacity="0.95"/>
-      <circle cx="36" cy="27" r="5.5" fill="#1a3a6b" opacity="1"/>
-      <line x1="33" y1="21" x2="33" y2="9" stroke="#f5d060" stroke-width="2.5" stroke-linecap="round"/>
-      <polygon points="33,3 30.5,10 35.5,10" fill="#f5d060"/>
-      <line x1="33" y1="29" x2="14" y2="19" stroke="#ffe066" stroke-width="1" opacity="0.45"/>
-      <line x1="33" y1="29" x2="52" y2="19" stroke="#ffe066" stroke-width="1" opacity="0.45"/>
-      <line x1="33" y1="29" x2="8" y2="33" stroke="#ffe066" stroke-width="1" opacity="0.35"/>
-      <line x1="33" y1="29" x2="58" y2="33" stroke="#ffe066" stroke-width="1" opacity="0.35"/>
-    </svg>
-  </div>
-
-  <div class="title-area">
-    <div class="bismillah">بِسْمِ اللهِ الرَّحْمَنِ الرَّحِيمِ</div>
-    <div class="moulti-banner">
-      <div class="moulti-text">مُولتِـي</div>
-      <div class="ya-leaves" id="yaLeaves"></div>
+  <div class="paper">
+    <div class="sky" id="sky">
+      <div class="minaret-wrap">
+        <svg class="minaret-svg" width="66" height="165" viewBox="0 0 66 165" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="13" y="114" width="40" height="51" rx="2" fill="#e8c862" opacity="0.92" />
+          <path d="M25 165 L25 138 Q33 129 41 138 L41 165Z" fill="#b8860b" opacity="0.55" />
+          <rect x="18" y="121" width="11" height="11" rx="2" fill="#1a3a6b" opacity="0.45" />
+          <rect x="36" y="121" width="11" height="11" rx="2" fill="#1a3a6b" opacity="0.45" />
+          <rect x="18" y="80" width="30" height="36" rx="2" fill="#f0c840" opacity="0.92" />
+          <rect x="23" y="88" width="8" height="11" rx="1" fill="#1a3a6b" opacity="0.38" />
+          <rect x="35" y="88" width="8" height="11" rx="1" fill="#1a3a6b" opacity="0.38" />
+          <rect x="15" y="111" width="36" height="5" rx="1.5" fill="#c9a84c" />
+          <rect x="20" y="77" width="26" height="5" rx="1.5" fill="#c9a84c" />
+          <rect x="23" y="53" width="20" height="27" rx="2" fill="#e8c862" opacity="0.95" />
+          <rect x="27" y="59" width="12" height="13" rx="5" fill="#1a3a6b" opacity="0.3" />
+          <rect x="21" y="51" width="24" height="4" rx="1.5" fill="#c9a84c" />
+          <ellipse cx="33" cy="47" rx="14" ry="7" fill="#f5d060" />
+          <path d="M19 47 Q33 33 47 47" fill="#f5d060" />
+          <circle cx="33" cy="29" r="7" fill="#ffe066" opacity="0.95" />
+          <circle cx="36" cy="27" r="5.5" fill="#1a3a6b" opacity="1" />
+          <line x1="33" y1="21" x2="33" y2="9" stroke="#f5d060" stroke-width="2.5" stroke-linecap="round" />
+          <polygon points="33,3 30.5,10 35.5,10" fill="#f5d060" />
+          <line x1="33" y1="29" x2="14" y2="19" stroke="#ffe066" stroke-width="1" opacity="0.45" />
+          <line x1="33" y1="29" x2="52" y2="19" stroke="#ffe066" stroke-width="1" opacity="0.45" />
+          <line x1="33" y1="29" x2="8" y2="33" stroke="#ffe066" stroke-width="1" opacity="0.35" />
+          <line x1="33" y1="29" x2="58" y2="33" stroke="#ffe066" stroke-width="1" opacity="0.35" />
+        </svg>
+      </div>
     </div>
-    <div class="ramadan-deco">
-      <svg width="480" height="70" viewBox="0 0 480 70" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <line x1="25" y1="10" x2="455" y2="10" stroke="#c9a84c" stroke-width="1.2" stroke-dasharray="4 3" opacity="0.65"/>
-        <g transform="translate(28,8)">
-          <line x1="0" y1="0" x2="0" y2="6" stroke="#c9a84c" stroke-width="1"/>
-          <polygon points="-7,7 7,7 10,27 -10,27" fill="#2255a4" opacity="0.88"/>
-          <polygon points="-10,27 10,27 7,32 -7,32" fill="#c9a84c"/>
-          <ellipse cx="0" cy="17" rx="3.5" ry="3.5" fill="#ffe066" opacity="0.5"/>
-          <rect x="-10" y="6" width="20" height="2.5" rx="1.2" fill="#c9a84c"/>
-        </g>
-        <g transform="translate(78,5)">
-          <line x1="0" y1="0" x2="0" y2="8" stroke="#c9a84c" stroke-width="1.2"/>
-          <polygon points="-11,10 11,10 15,38 -15,38" fill="#c0392b" opacity="0.9"/>
-          <polygon points="-11,10 11,10 6,18 -6,18" fill="#e66" opacity="0.5"/>
-          <polygon points="-15,38 15,38 11,44 -11,44" fill="#c9a84c"/>
-          <ellipse cx="0" cy="24" rx="5" ry="5" fill="#ffe066" opacity="0.48"/>
-          <rect x="-15" y="9" width="30" height="3" rx="1.5" fill="#c9a84c"/>
-        </g>
-        <g transform="translate(185,1)">
-          <circle cx="0" cy="22" r="19" fill="#1a3a6b"/>
-          <circle cx="-3" cy="22" r="12.5" fill="#c9a84c" opacity="0.92"/>
-          <circle cx="3" cy="19" r="9.5" fill="#1a3a6b"/>
-          <polygon points="19,7 21,13 27,13 22,17 24,23 19,19.5 14,23 16,17 11,13 17,13" fill="#ffe066" opacity="0.88" transform="scale(0.62) translate(11,-1)"/>
-        </g>
-        <text x="240" y="57" text-anchor="middle" font-family="Amiri, serif" font-size="21" fill="#c9a84c" font-weight="700" letter-spacing="2">رَمَضَانُ كَرِيم</text>
-        <g transform="translate(332,5)">
-          <line x1="0" y1="0" x2="0" y2="8" stroke="#c9a84c" stroke-width="1.2"/>
-          <polygon points="-11,10 11,10 15,38 -15,38" fill="#2255a4" opacity="0.9"/>
-          <polygon points="-11,10 11,10 6,18 -6,18" fill="#5588cc" opacity="0.5"/>
-          <polygon points="-15,38 15,38 11,44 -11,44" fill="#c9a84c"/>
-          <ellipse cx="0" cy="24" rx="5" ry="5" fill="#ffe066" opacity="0.48"/>
-          <rect x="-15" y="9" width="30" height="3" rx="1.5" fill="#c9a84c"/>
-        </g>
-        <g transform="translate(424,8)">
-          <line x1="0" y1="0" x2="0" y2="6" stroke="#c9a84c" stroke-width="1"/>
-          <polygon points="-7,7 7,7 10,27 -10,27" fill="#c0392b" opacity="0.85"/>
-          <polygon points="-10,27 10,27 7,32 -7,32" fill="#c9a84c"/>
-          <ellipse cx="0" cy="17" rx="3.5" ry="3.5" fill="#ffe066" opacity="0.5"/>
-          <rect x="-10" y="6" width="20" height="2.5" rx="1.2" fill="#c9a84c"/>
-        </g>
-        <circle cx="135" cy="57" r="1.5" fill="#ffe066" opacity="0.65"/>
-        <circle cx="348" cy="59" r="1.5" fill="#ffe066" opacity="0.65"/>
-        <circle cx="452" cy="52" r="1.2" fill="#ffe066" opacity="0.55"/>
-        <circle cx="38" cy="54" r="1.2" fill="#ffe066" opacity="0.55"/>
-      </svg>
-    </div>
-    <div class="subtitle">— إعلان رسمي ودّي —</div>
-  </div>
 
-  <div class="divider"></div>
+    <div class="title-area">
+      <div class="bismillah">بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيم</div>
 
-  <div class="content">
-    <div class="announce-label">✦ إعلان عام ✦</div>
-    <div class="main-title">دعوة لخروج جماعي 🌿</div>
-    <p class="intro-text">
-      يسعد المنظّم <strong>حريز عبد الوهاب</strong> أن يُعلن لكم عن خروج جماعي
-      <br>مفتوح لجميع زملائه الأعزاء، لقضاء ليلة ممتعة في أجواء رمضانية 🌙
-    </p>
-
-    <div class="divider-thin"></div>
-
-    <div class="info-grid">
-      <div class="info-card">
-        <div class="card-icon">📍</div>
-        <div>
-          <span class="card-label">المكان</span>
-          <div class="card-value">متنزّه صبلات</div>
+      <div class="moulti-banner">
+        <div class="moulti-text">مولتي</div>
+        <div class="ya-leaves" id="yaLeaves">
+          <div class="ya-leaf"></div>
+          <div class="ya-leaf"></div>
+          <div class="ya-leaf"></div>
         </div>
       </div>
-      <div class="info-card">
-        <div class="card-icon">🕙</div>
-        <div>
-          <span class="card-label">العودة</span>
-          <div class="card-value">على الساعة 10:00</div>
-        </div>
+
+      <div class="ramadan-deco">
+        <svg width="480" height="70" viewBox="0 0 480 70" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <line x1="25" y1="10" x2="455" y2="10" stroke="#c9a84c" stroke-width="1.2" stroke-dasharray="4 3" opacity="0.65" />
+          <g transform="translate(28,8)">
+            <line x1="0" y1="0" x2="0" y2="6" stroke="#c9a84c" stroke-width="1" />
+            <polygon points="-7,7 7,7 10,27 -10,27" fill="#2255a4" opacity="0.88" />
+            <polygon points="-10,27 10,27 7,32 -7,32" fill="#c9a84c" />
+            <ellipse cx="0" cy="17" rx="3.5" ry="3.5" fill="#ffe066" opacity="0.5" />
+            <rect x="-10" y="6" width="20" height="2.5" rx="1.2" fill="#c9a84c" />
+          </g>
+          <g transform="translate(78,5)">
+            <line x1="0" y1="0" x2="0" y2="8" stroke="#c9a84c" stroke-width="1.2" />
+            <polygon points="-11,10 11,10 15,38 -15,38" fill="#c0392b" opacity="0.9" />
+            <polygon points="-11,10 11,10 6,18 -6,18" fill="#e66" opacity="0.5" />
+            <polygon points="-15,38 15,38 11,44 -11,44" fill="#c9a84c" />
+            <ellipse cx="0" cy="24" rx="5" ry="5" fill="#ffe066" opacity="0.48" />
+            <rect x="-15" y="9" width="30" height="3" rx="1.5" fill="#c9a84c" />
+          </g>
+          <g transform="translate(185,1)">
+            <circle cx="0" cy="22" r="19" fill="#1a3a6b" />
+            <circle cx="-3" cy="22" r="12.5" fill="#c9a84c" opacity="0.92" />
+            <circle cx="3" cy="19" r="9.5" fill="#1a3a6b" />
+            <polygon points="19,7 21,13 27,13 22,17 24,23 19,19.5 14,23 16,17 11,13 17,13" fill="#ffe066" opacity="0.88" transform="scale(0.62) translate(11,-1)" />
+          </g>
+          <text x="240" y="57" text-anchor="middle" font-family="Amiri, serif" font-size="21" fill="#c9a84c" font-weight="700" letter-spacing="2">ريمِكَ نُ ضاَ مَ رَ</text>
+          <g transform="translate(332,5)">
+            <line x1="0" y1="0" x2="0" y2="8" stroke="#c9a84c" stroke-width="1.2" />
+            <polygon points="-11,10 11,10 15,38 -15,38" fill="#2255a4" opacity="0.9" />
+            <polygon points="-11,10 11,10 6,18 -6,18" fill="#5588cc" opacity="0.5" />
+            <polygon points="-15,38 15,38 11,44 -11,44" fill="#c9a84c" />
+            <ellipse cx="0" cy="24" rx="5" ry="5" fill="#ffe066" opacity="0.48" />
+            <rect x="-15" y="9" width="30" height="3" rx="1.5" fill="#c9a84c" />
+          </g>
+          <g transform="translate(424,8)">
+            <line x1="0" y1="0" x2="0" y2="6" stroke="#c9a84c" stroke-width="1" />
+            <polygon points="-7,7 7,7 10,27 -10,27" fill="#c0392b" opacity="0.85" />
+            <polygon points="-10,27 10,27 7,32 -7,32" fill="#c9a84c" />
+            <ellipse cx="0" cy="17" rx="3.5" ry="3.5" fill="#ffe066" opacity="0.5" />
+            <rect x="-10" y="6" width="20" height="2.5" rx="1.2" fill="#c9a84c" />
+          </g>
+          <circle cx="135" cy="57" r="1.5" fill="#ffe066" opacity="0.65" />
+          <circle cx="348" cy="59" r="1.5" fill="#ffe066" opacity="0.65" />
+          <circle cx="452" cy="52" r="1.2" fill="#ffe066" opacity="0.55" />
+          <circle cx="38" cy="54" r="1.2" fill="#ffe066" opacity="0.55" />
+        </svg>
       </div>
-      <div class="info-card">
-        <div class="card-icon">📅</div>
-        <div>
-          <span class="card-label">اليوم المقترح</span>
-          <div class="card-value">الأحد أو الثلاثاء</div>
-        </div>
-      </div>
-      <div class="info-card">
-        <div class="card-icon">🍽️</div>
-        <div>
-          <span class="card-label">البرنامج</span>
-          <div class="card-value">إفطار رمضان + جلسة لاتاي ☕</div>
-        </div>
-      </div>
-      <div class="info-card full">
-        <div class="card-icon">🕌</div>
-        <div>
-          <span class="card-label">موعد الانطلاق</span>
-          <div class="card-value">بعد أذان المغرب وإفطار رمضان — ثم الذهاب مباشرةً بعد الاتفاق الجماعي</div>
-        </div>
-      </div>
+
+      <div class="subtitle">إعلان رسمي ودي</div>
     </div>
 
-    <div class="invited-box">
-      <div class="invited-title">🎓 من يحق له المشاركة؟</div>
-      <div class="invited-text">
-        جميع تلاميذ <strong>قسم المدرسة القرآنية — الثانية ثانوي</strong><br>
-        ويُمكنكم اصطحاب أي قريب معكم 👐
-      </div>
-    </div>
-
-    <p class="note">⚠️ الذهاب مشروط بالتقرير والاتفاق المسبق بين الجميع</p>
-
-    <div class="ramadan-note">
-      🌙 يُرجى استغلال الوقت قبل نهاية رمضان — فالفرص لا تتكرر!
-    </div>
-
-    <div class="register-wrap">
-      <button class="register-btn" onclick="openModal()">✍️ سجّل اسمك هنا</button>
-    </div>
-
-    <div class="registered-section" id="registeredSection">
-      <div class="divider-thin"></div>
-      <div class="registered-title">📋 قائمة المسجّلين</div>
-      <div class="registered-grid" id="registeredGrid"></div>
-    </div>
-
-  </div>
-
-  <div class="footer-note">
     <div class="divider"></div>
-    <div class="attendance-line">الحضور اختياري</div>
-    <div class="attendance-bold">✦ والأفضل القدوم دون تفكير ✦</div>
-    <div class="signature-area">
-      <div class="sig-line"></div>
-      <div class="sig-text">مُولتِـي</div>
-      <div class="source-line">المصدر: حريز عبد الوهاب</div>
-    </div>
-  </div>
 
-  <div class="ornament tl">❧</div>
-  <div class="ornament tr">❧</div>
-  <div class="ornament bl">❧</div>
-  <div class="ornament br">❧</div>
+    <div class="content">
+      <div class="announce-label">✦ عام إعلان ✦</div>
+      <div class="main-title">دعوة جماعية للخروج</div>
+      <p class="intro-text">
+        يسعد المن <strong>حريز عبد الوهاب</strong> أن يُعلن لكم عن خروج جماعي مظلم <br />
+        مفتوح لجميع زمالئه الأعزاء، لقضاء ليلة ممتعة في أجواء رمضانية.
+      </p>
 
-</div>
+      <div class="divider-thin"></div>
 
-<!-- MODAL -->
-<div class="modal-overlay" id="modalOverlay">
-  <div class="modal-box">
-    <div class="modal-header">
-      <button class="modal-close" onclick="closeModal()">✕</button>
-      <h2>✍️ سجّل اسمك</h2>
-      <p>انضم للخروج الجماعي — رمضان كريم 🌙</p>
-    </div>
-
-    <div class="modal-body" id="modalForm">
-      <div class="form-group">
-        <label class="form-label">الاسم الكامل</label>
-        <input class="form-input" type="text" id="nameInput" placeholder="اكتب اسمك هنا..." maxlength="40"/>
-      </div>
-      <div class="form-group">
-        <label class="form-label">اليوم المناسب لك</label>
-        <div class="day-selector">
-          <div class="day-option">
-            <input type="radio" name="day" id="day1" value="الأحد"/>
-            <label for="day1">الأحد</label>
+      <div class="info-grid">
+        <div class="info-card">
+          <div class="card-icon">📍</div>
+          <div>
+            <span class="card-label">المكان</span>
+            <div class="card-value">متنزه الصابلات</div>
           </div>
-          <div class="day-option">
-            <input type="radio" name="day" id="day2" value="الثلاثاء"/>
-            <label for="day2">الثلاثاء</label>
+        </div>
+        <div class="info-card">
+          <div class="card-icon">🕒</div>
+          <div>
+            <span class="card-label">العودة</span>
+            <div class="card-value">الساعة 10:00</div>
           </div>
-          <div class="day-option">
-            <input type="radio" name="day" id="day3" value="السبت"/>
-            <label for="day3">السبت</label>
+        </div>
+        <div class="info-card">
+          <div class="card-icon">📅</div>
+          <div>
+            <span class="card-label">المقترح اليوم</span>
+            <div class="card-value">الثلاثاء أو الأحد</div>
+          </div>
+        </div>
+        <div class="info-card">
+          <div class="card-icon">🥘</div>
+          <div>
+            <span class="card-label">البرنامج</span>
+            <div class="card-value">جلسة شاي + إفطار رمضاني</div>
           </div>
         </div>
       </div>
-      <button class="submit-btn" onclick="submitRegis
+
+      <div class="invited-box">
+        <div class="invited-title">دعوة خاصة لك</div>
+        <div class="invited-text">انضم إلينا للاستمتاع بأمسية ممتعة مع الأصدقاء، مع جو رمضاني هادئ وذكريات جميلة.</div>
+      </div>
+
+      <div class="ramadan-note">ملاحظة: يرجى التسجيل مسبقًا لتأمين مكانك. الأماكن محدودة.</div>
+
+      <div class="register-wrap">
+        <button class="register-btn" type="button" id="openModalBtn">سجل حضورك</button>
+      </div>
+
+      <div class="registered-section" id="registeredSection">
+        <div class="registered-title">قائمة المسجلين</div>
+        <div class="registered-grid" id="registeredGrid"></div>
+      </div>
+
+      <div class="footer-note">
+        <div class="attendance-line">عدد الحضور المتوقع: <span class="attendance-bold" id="attendanceCount">0</span></div>
+        <div class="signature-area">
+          <div class="sig-line"></div>
+          <div class="sig-text">حريز عبد الوهاب</div>
+          <div class="source-line">مصدر الدعوة • مولتي</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <div class="modal-header">
+        <h2 id="modalTitle">سجل حضورك</h2>
+        <p>سنكون سعداء بحضورك معنا</p>
+        <button class="modal-close" id="modalCloseBtn" aria-label="إغلاق">×</button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label class="form-label" for="nameInput">الاسم</label>
+          <input class="form-input" id="nameInput" type="text" placeholder="اكتب اسمك" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">اليوم المفضل</label>
+          <div class="day-selector">
+            <div class="day-option">
+              <input type="radio" id="dayTuesday" name="day" value="الثلاثاء" />
+              <label for="dayTuesday">الثلاثاء</label>
+            </div>
+            <div class="day-option">
+              <input type="radio" id="daySunday" name="day" value="الأحد" />
+              <label for="daySunday">الأحد</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">هل ستشارك؟</label>
+          <div class="attend-selector">
+            <div class="attend-option yes">
+              <input type="radio" id="attendYes" name="attend" value="yes" />
+              <label for="attendYes"><span class="att-icon">✅</span> نعم</label>
+            </div>
+            <div class="attend-option no">
+              <input type="radio" id="attendNo" name="attend" value="no" />
+              <label for="attendNo"><span class="att-icon">❌</span> لا</label>
+            </div>
+          </div>
+        </div>
+
+        <button class="submit-btn" id="submitBtn" type="button">إرسال</button>
+
+        <div class="success-msg" id="successMsg">
+          <div class="check-icon">✔️</div>
+          <h3>تم التسجيل!</h3>
+          <p>شكرًا لك، تم إضافة اسمك إلى قائمة الحضور.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const modalOverlay = document.getElementById('modalOverlay');
+    const openModalBtn = document.getElementById('openModalBtn');
+    const closeModalBtn = document.getElementById('modalCloseBtn');
+    const submitBtn = document.getElementById('submitBtn');
+    const successMsg = document.getElementById('successMsg');
+    const registeredSection = document.getElementById('registeredSection');
+    const registeredGrid = document.getElementById('registeredGrid');
+    const attendanceCount = document.getElementById('attendanceCount');
+
+    openModalBtn.addEventListener('click', () => {
+      successMsg.style.display = 'none';
+      modalOverlay.classList.add('open');
+      document.getElementById('nameInput').focus();
+    });
+
+    closeModalBtn.addEventListener('click', () => {
+      modalOverlay.classList.remove('open');
+    });
+
+    modalOverlay.addEventListener('click', (event) => {
+      if (event.target === modalOverlay) {
+        modalOverlay.classList.remove('open');
+      }
+    });
+
+    submitBtn.addEventListener('click', () => {
+      const nameInput = document.getElementById('nameInput');
+      const name = nameInput.value.trim();
+      const day = document.querySelector('input[name="day"]:checked');
+      const attend = document.querySelector('input[name="attend"]:checked');
+
+      if (!name || !day || !attend) {
+        alert('يرجى ملء جميع الحقول');
+        return;
+      }
+
+      const entry = document.createElement('div');
+      entry.className = 'reg-entry';
+
+      const num = document.createElement('div');
+      num.className = 'reg-num';
+      num.textContent = registeredGrid.children.length + 1;
+
+      const nameEl = document.createElement('div');
+      nameEl.className = 'reg-name';
+      nameEl.textContent = name;
+
+      const dayEl = document.createElement('div');
+      dayEl.className = 'reg-day';
+      dayEl.textContent = day.value;
+
+      entry.appendChild(num);
+      entry.appendChild(nameEl);
+      entry.appendChild(dayEl);
+
+      registeredGrid.appendChild(entry);
+      registeredSection.classList.add('has-entries');
+      attendanceCount.textContent = registeredGrid.children.length;
+
+      successMsg.style.display = 'block';
+      nameInput.value = '';
+      document.querySelectorAll('input[name="day"]').forEach((el) => (el.checked = false));
+      document.querySelectorAll('input[name="attend"]').forEach((el) => (el.checked = false));
+    });
+  </script>
+</body>
+</html>
